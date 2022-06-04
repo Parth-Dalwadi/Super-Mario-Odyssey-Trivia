@@ -1,4 +1,29 @@
 {
+  "question": [
+    "What is the name of Mario's hat?",
+    "Which of the Broodals do you fight first?",
+    "What's the name of the mayor of New Donk City?",
+    "What's the name of Darker Side's only Power Moon?",
+    "How many Power Moons does the Sand Kingdom have?",
+    "Which of these is not something Mario can transform into?"
+  ],
 
+  "choices" : [
+    ["Hatty", "Cappy", "Toppy", "Luigi"],
+    ["Hariet", "Rango", "Topper", "Spewart"],
+    ["Pauline", "Maria", "Daisy", "Rosalina"],
+    ["Final Destination", "Lighting a Way", "The Perfect Run", "Long Journey's End"],
+    ["89", "95", "76", "80"],
+    ["T-Rex", "Frog", "Sphinx", "Binoculars"]
+  ],
+
+  "answer" : [
+    2,
+    3,
+    1,
+    4,
+    1,
+    3
+  ]
 
 }
