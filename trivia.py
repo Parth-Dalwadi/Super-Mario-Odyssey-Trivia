@@ -5,9 +5,8 @@ import winsound
 import random
 
 
-winsound.PlaySound('Music/steamGardens.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
-
 # Music
+winsound.PlaySound('Music/steamGardens.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 
 def stop_music():
@@ -28,6 +27,7 @@ answers = section['answer']
 zipQCA = zip(questions, choices, answers)
 listQCA = list(zipQCA)
 random.shuffle(listQCA)
+questions, choices, answers = zip(*listQCA)
 
 root = Tk()
 width = root.winfo_screenwidth()
