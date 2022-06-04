@@ -33,20 +33,26 @@ root = Tk()
 width = root.winfo_screenwidth()
 height = root.winfo_screenheight()
 root.geometry("%dx%d" % (width, height))
+root.attributes('-fullscreen', True)
 root.title("Super Mario Odyssey Trivia")
 root.configure(background="black")
-frm = ttk.Frame(root, padding=10)
-frm.grid()
-ttk.Label(frm, text="Hello World!", background="red").grid(column=0, row=0)
-ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-ttk.Button(frm, text="Stop Music", command=stop_music).grid(column=2, row=0)
+title = Label(root, text="Super Mario Odyssey Trivia", width=width, foreground="white", background="#e4000f", font=("Helvetica", 24, "bold"))
+title.pack(side="top")
 
 
 class Trivia:
     def __init__(self):
-        self
+        self.buttons()
+
+    def buttons(self):
+        quit_button = Button(root, text="Quit", command=root.destroy, width=10, bg="red", fg="white", font=("Helvetica", 16, "bold"))
+        quit_button.place(x=100, y=200)
+
+        stop_music_button = Button(root, text="Stop Music", command=stop_music, width=10, bg="green", fg="white", font=("Helvetica", 16, "bold"))
+        stop_music_button.place(x=300, y=200)
 
 
+trivia = Trivia()
 root.mainloop()
 winsound.PlaySound(None, winsound.SND_PURGE)
 
