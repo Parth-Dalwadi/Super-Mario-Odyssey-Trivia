@@ -15,7 +15,7 @@ list_music = list(music_names)
 random.shuffle(list_music)
 
 
-winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
+winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
 
 
 def stop_music():
@@ -67,7 +67,7 @@ class Trivia:
             self.music_count = 0
         self.music_name = list_music[self.music_count]
         music_string = 'Music/' + self.music_name + '.wav'
-        winsound.PlaySound(music_string, winsound.SND_FILENAME | winsound.SND_ASYNC)
+        winsound.PlaySound(music_string, winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
 
 
 trivia = Trivia()
