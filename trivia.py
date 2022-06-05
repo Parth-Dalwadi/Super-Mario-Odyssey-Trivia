@@ -50,6 +50,7 @@ class Trivia:
         self.buttons()
         self.music_count = 0
         self.music_name = ''
+        self.is_fullscreen = True
 
     def buttons(self):
         quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="red", fg="white", font=("Helvetica", 16, "bold"))
@@ -61,6 +62,9 @@ class Trivia:
         change_music_button = Button(root, text="Change Music", command=self.change_music, width=12, bg="green", fg="white", font=("Helvetica", 16, "bold"))
         change_music_button.place(x=500, y=200)
 
+        toggle_window_button = Button(root, text="Toggle Window", command=self.is_fullscreen, width=12, bg="green", fg="white", font=("Helvetica", 16, "bold"))
+        toggle_window_button.place(x=700, y=200)
+
     def change_music(self):
         self.music_count += 1
         if self.music_count == len(list_music):
@@ -68,6 +72,10 @@ class Trivia:
         self.music_name = list_music[self.music_count]
         music_string = 'Music/' + self.music_name + '.wav'
         winsound.PlaySound(music_string, winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
+
+    def is_fullscreen(self):
+        self.is_fullscreen = not self.is_fullscreen
+        root.attributes('-fullscreen', self.is_fullscreen)
 
 
 trivia = Trivia()
