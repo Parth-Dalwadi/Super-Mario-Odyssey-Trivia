@@ -51,19 +51,25 @@ class Trivia:
         self.music_count = 0
         self.music_name = ''
         self.is_fullscreen = True
+        self.score = 0
+        self.question = ""
+        self.question_number = 1
 
     def buttons(self):
-        quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="red", fg="white", font=("Helvetica", 16, "bold"))
-        quit_button.place(x=100, y=200)
+        quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="darkred", fg="white", font=("Helvetica", 16, "bold"))
+        quit_button.pack(side="bottom", anchor="se")
 
         stop_music_button = Button(root, text="Stop Music", command=stop_music, width=12, bg="green", fg="white", font=("Helvetica", 16, "bold"))
-        stop_music_button.place(x=300, y=200)
+        stop_music_button.pack(side="bottom", anchor="se")
 
-        change_music_button = Button(root, text="Change Music", command=self.change_music, width=12, bg="green", fg="white", font=("Helvetica", 16, "bold"))
-        change_music_button.place(x=500, y=200)
+        change_music_button = Button(root, text="Change Music", command=self.change_music, width=12, bg="purple", fg="white", font=("Helvetica", 16, "bold"))
+        change_music_button.pack(side="bottom", anchor="se")
 
-        toggle_window_button = Button(root, text="Toggle Window", command=self.is_fullscreen, width=12, bg="green", fg="white", font=("Helvetica", 16, "bold"))
-        toggle_window_button.place(x=700, y=200)
+        toggle_window_button = Button(root, text="Toggle Window", command=self.is_fullscreen, width=12, bg="brown", fg="white", font=("Helvetica", 16, "bold"))
+        toggle_window_button.pack(side="bottom", anchor="se")
+
+        start_button = Button(root, text="Start", width=12, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        start_button.place(relx=0.5, rely=0.5, anchor="center")
 
     def change_music(self):
         self.music_count += 1
