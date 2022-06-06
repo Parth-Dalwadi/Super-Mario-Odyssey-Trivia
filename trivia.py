@@ -35,6 +35,7 @@ random.shuffle(listQCA)
 questions, choices, answers = zip(*listQCA)
 
 root = Tk()
+root.iconbitmap("Images/cappy.ico")
 width = root.winfo_screenwidth()
 height = root.winfo_screenheight()
 root.geometry("%dx%d" % (width, height))
@@ -53,7 +54,9 @@ class Trivia:
         self.is_fullscreen = True
         self.score = 0
         self.question = ""
-        self.question_number = 1
+        self.question_number = 0
+        self.question_number_display = 1
+        self.num_of_questions = len(questions)
 
     def buttons(self):
         quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="darkred", fg="white", font=("Helvetica", 16, "bold"))
@@ -68,7 +71,7 @@ class Trivia:
         toggle_window_button = Button(root, text="Toggle Window", command=self.is_fullscreen, width=12, bg="brown", fg="white", font=("Helvetica", 16, "bold"))
         toggle_window_button.pack(side="bottom", anchor="se")
 
-        start_button = Button(root, text="Start", width=12, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        start_button = Button(root, text="Start", command=lambda: [self.start_trivia(), start_button.destroy()], width=12, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
         start_button.place(relx=0.5, rely=0.5, anchor="center")
 
     def change_music(self):
@@ -82,6 +85,9 @@ class Trivia:
     def is_fullscreen(self):
         self.is_fullscreen = not self.is_fullscreen
         root.attributes('-fullscreen', self.is_fullscreen)
+
+    def start_trivia(self):
+        print(2)
 
 
 trivia = Trivia()
