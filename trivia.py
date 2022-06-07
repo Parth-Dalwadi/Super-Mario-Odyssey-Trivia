@@ -160,17 +160,18 @@ class Trivia:
         else:
             self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 16, "bold"))
             self.question.place(relx=0.5, rely=0.2, anchor="center")
-            choice_count = 0
+            answer_list = [1, 2, 3, 4]
             for choice in self.choices[self.question_number]:
-                if choice_count == 0:
+                rand_answer_button = random.choice(answer_list)
+                if rand_answer_button == 1:
                     self.answer_button_1.configure(text=choice)
-                elif choice_count == 1:
+                elif rand_answer_button == 2:
                     self.answer_button_2.configure(text=choice)
-                elif choice_count == 2:
+                elif rand_answer_button == 3:
                     self.answer_button_3.configure(text=choice)
                 else:
                     self.answer_button_4.configure(text=choice)
-                choice_count += 1
+                answer_list.remove(rand_answer_button)
 
     def randomize_qca(self):
         self.questions = section['question']
