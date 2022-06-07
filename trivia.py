@@ -194,6 +194,8 @@ class Trivia:
         self.answer_button_3.destroy()
         self.answer_button_4.destroy()
         self.question.configure(text="")
+        self.score_label.configure(text="")
+        self.questions_left_label.configure(text="")
         stop_music()
         self.result_label = Label(root, text="Your final score was " + str(self.score) + "/" + str(len(self.questions)) + "!", width=30, bg="black", fg="white", font=("Helvetica", 32, "bold"))
         self.result_label.place(relx=0.5, rely=0.5, anchor="center")
