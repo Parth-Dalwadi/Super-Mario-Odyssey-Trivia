@@ -79,7 +79,7 @@ class Trivia:
         self.question_number_display = 1
         self.num_of_questions = len(questions)
         self.score_label = Label()
-        self.song_name_label = Label(root, text="Song Name:   " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="white", font=("Helvetica", 16, "bold"), anchor="w")
+        self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="white", font=("Helvetica", 16, "bold"), anchor="w")
         self.song_name_label.place(relx=0, rely=0.95)
 
     def buttons(self):
@@ -138,7 +138,7 @@ class Trivia:
         self.score_label.configure(text="Score: " + str(self.score))
 
     def update_song_name(self):
-        self.song_name_label.configure(text="Song Name:   " + music_dictionary[list_music[self.music_count]])
+        self.song_name_label.configure(text="Song Name:  " + music_dictionary[list_music[self.music_count]])
 
 
 trivia = Trivia()
