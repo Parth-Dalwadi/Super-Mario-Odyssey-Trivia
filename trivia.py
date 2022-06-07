@@ -7,11 +7,20 @@ import random
 
 # Music
 with open('musicNames.json') as music_file:
-    music_obj = json.load(music_file)
+    music_section = json.load(music_file)
 
 
-music_names = music_obj['names']
+music_names = music_section['names']
+full_names = music_section['full_names']
 list_music = list(music_names)
+list_full_music_names = list(full_names)
+
+music_dictionary = {}
+dictionary_count = 0
+for music in list_music:
+    music_dictionary.update({music: list_full_music_names[dictionary_count]})
+    dictionary_count += 1
+
 random.shuffle(list_music)
 
 
@@ -20,27 +29,6 @@ winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | wi
 
 def stop_music():
     winsound.PlaySound(None, winsound.SND_ASYNC)
-
-
-music_dictionary = {
-    "bonneton": "Bonneton",
-    "bowserBattle1NimbusArenaShowdown": "Bowser Battle 1: Nimbus Arena Showdown",
-    "bowserCastle": "Bowser's Castle",
-    "bubblaine": "Bubblaine",
-    "forgottenIsle": "Forgotten Isle",
-    "fossilFalls": "Fossil Falls",
-    "honeyluneRidge": "Honeylune Ridge",
-    "jumpUpSuperStarFestival": "Jump Up, Super Star! NDC Festival Edition",
-    "lakeLamode": "Lake Lamode",
-    "mountVolbono": "Mount Volbono",
-    "newDonkCity": "New Donk City",
-    "peachCastle": "Peach's Castle",
-    "ruinedDragonBattle": "Ruined Dragon Battle",
-    "shiveriaTown": "Shiveria Town",
-    "steamGardens": "Steam Gardens",
-    "theSilverWorldOfShiveria": "The Silver World of Shiveria",
-    "tostarenaRuins": "Tostarena Ruins"
-}
 
 
 # Trivia Game
