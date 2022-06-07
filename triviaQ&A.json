@@ -2,10 +2,14 @@
   "question": [
     "What is the name of Mario's hat?",
     "Which of the Broodals do you fight first?",
-    "What's the name of the mayor of New Donk City?",
+    "What's the name of New Donk City's mayor?",
     "What's the name of Darker Side's only Power Moon?",
     "How many Power Moons does the Sand Kingdom have?",
-    "Which of these is not something Mario can transform into?"
+    "Which of these is not something Mario can transform into?",
+    "What are the locals of Mount Volbono called?",
+    "What transformation do you use to defeat Mollusque-Lanceur?",
+    "In which kingdom does the Jaxi reside?",
+    "Where can you buy the Samurai Armor?"
   ],
 
   "choices" : [
@@ -14,7 +18,11 @@
     ["Pauline", "Maria", "Daisy", "Rosalina"],
     ["Final Destination", "Lighting a Way", "The Perfect Run", "Long Journey's End"],
     ["89", "95", "76", "80"],
-    ["T-Rex", "Frog", "Sphinx", "Binoculars"]
+    ["T-Rex", "Frog", "Sphinx", "Binoculars"],
+    ["Forks", "Volbonans", "Stir Fires", "Lunchies"],
+    ["Gushen", "Sherm", "Cheep Cheep", "Lava Bubble"],
+    ["Cloud Kingdom", "Snow Kingdom", "Sand Kingdom", "Lost Kingdom"],
+    ["Lake Kingdom", "Cascade Kingdom", "Ruined Kingdom", "Bowser's Kingdom"]
   ],
 
   "answer" : [
@@ -23,7 +31,11 @@
     "Pauline",
     "Long Journey's End",
     "89",
-    "Sphinx"
+    "Sphinx",
+    "Volbonans",
+    "Gushen",
+    "Sand Kingdom",
+    "Bowser's Kingdom"
   ]
 
 }

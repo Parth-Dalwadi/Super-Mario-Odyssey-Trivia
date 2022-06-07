@@ -56,7 +56,7 @@ class Trivia:
         self.score = 0
         self.question = Label()
         self.question_number = 0
-        self.question_number_display = 1
+        self.question_number_display = 0
         self.score_label = Label()
         self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="white", font=("Helvetica", 16, "bold"), anchor="w")
         self.song_name_label.place(relx=0, rely=0.95)
@@ -69,6 +69,7 @@ class Trivia:
         self.choices = []
         self.result_label = Label()
         self.result_label_percent = Label()
+        self.questions_left_label = Label()
 
     def buttons(self):
         quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="darkred", fg="white", font=("Helvetica", 16, "bold"))
@@ -105,6 +106,9 @@ class Trivia:
         self.score_label.place(relx=0.5, rely=0.75, anchor="center")
         self.randomize_qca()
         self.question_prompt()
+        self.question_number_display = len(self.questions)
+        self.questions_left_label = Label(root, text="Questions left: " + str(self.question_number_display), width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
 
     def answer_buttons(self):
         self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
@@ -151,15 +155,17 @@ class Trivia:
 
     def update_question_prompt(self):
         self.question_number += 1
-        self.question_number_display += 1
+        self.question_number_display -= 1
         self.question_prompt()
 
     def question_prompt(self):
         if self.question_number == len(self.questions):
+            self.questions_left_label.configure(text="Questions Left: 0")
             self.result()
         else:
-            self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+            self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"))
             self.question.place(relx=0.5, rely=0.2, anchor="center")
+            self.questions_left_label.configure(text="Questions Left: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
             for choice in self.choices[self.question_number]:
                 rand_answer_button = random.choice(answer_list)
