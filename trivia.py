@@ -35,14 +35,6 @@ def stop_music():
 with open('triviaQ&A.json') as file:
     section = json.load(file)
 
-questions = section['question']
-choices = section['choices']
-answers = section['answer']
-zipQCA = zip(questions, choices, answers)
-listQCA = list(zipQCA)
-random.shuffle(listQCA)
-questions, choices, answers = zip(*listQCA)
-
 root = Tk()
 root.iconbitmap("Images/cappy.ico")
 width = root.winfo_screenwidth()
@@ -62,13 +54,21 @@ class Trivia:
         self.music_name = ''
         self.is_fullscreen = True
         self.score = 0
-        self.question = ""
+        self.question = Label()
         self.question_number = 0
         self.question_number_display = 1
-        self.num_of_questions = len(questions)
         self.score_label = Label()
         self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="white", font=("Helvetica", 16, "bold"), anchor="w")
         self.song_name_label.place(relx=0, rely=0.95)
+        self.answer_button_1 = Button()
+        self.answer_button_2 = Button()
+        self.answer_button_3 = Button()
+        self.answer_button_4 = Button()
+        self.questions = []
+        self.answers = []
+        self.choices = []
+        self.result_label = Label()
+        self.result_label_percent = Label()
 
     def buttons(self):
         quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="darkred", fg="white", font=("Helvetica", 16, "bold"))
@@ -103,30 +103,109 @@ class Trivia:
         self.answer_buttons()
         self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
         self.score_label.place(relx=0.5, rely=0.75, anchor="center")
+        self.randomize_qca()
+        self.question_prompt()
 
     def answer_buttons(self):
-        answer_button_1 = Button(root, text="Q1", command=self.answer, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
-        answer_button_1.place(relx=0.2, rely=0.6, anchor="center")
+        self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_1.place(relx=0.2, rely=0.6, anchor="center")
 
-        answer_button_2 = Button(root, text="Q2", command=lambda: answer_button_2.destroy(), width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
-        answer_button_2.place(relx=0.4, rely=0.6, anchor="center")
+        self.answer_button_2 = Button(root, text="Q2", command=self.answer_2, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_2.place(relx=0.4, rely=0.6, anchor="center")
 
-        answer_button_3 = Button(root, text="Q3", command=lambda: answer_button_3.destroy(), width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
-        answer_button_3.place(relx=0.6, rely=0.6, anchor="center")
+        self.answer_button_3 = Button(root, text="Q3", command=self.answer_3, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_3.place(relx=0.6, rely=0.6, anchor="center")
 
-        answer_button_4 = Button(root, text="Q4", command=lambda: answer_button_4.destroy(), width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
-        answer_button_4.place(relx=0.8, rely=0.6, anchor="center")
+        self.answer_button_4 = Button(root, text="Q4", command=self.answer_4, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_4.place(relx=0.8, rely=0.6, anchor="center")
 
-    def answer(self):
-        self.score += 1
-        self.update_score()
-        print(self.score)
+    def answer_1(self):
+        if self.answer_button_1['text'] == self.answers[self.question_number]:
+            self.score += 1
+            self.update_score()
+        self.update_question_prompt()
+
+    def answer_2(self):
+        if self.answer_button_2['text'] == self.answers[self.question_number]:
+            self.score += 1
+            self.update_score()
+        self.update_question_prompt()
+
+    def answer_3(self):
+        if self.answer_button_3['text'] == self.answers[self.question_number]:
+            self.score += 1
+            self.update_score()
+        self.update_question_prompt()
+
+    def answer_4(self):
+        if self.answer_button_4['text'] == self.answers[self.question_number]:
+            self.score += 1
+            self.update_score()
+        self.update_question_prompt()
 
     def update_score(self):
         self.score_label.configure(text="Score: " + str(self.score))
 
     def update_song_name(self):
         self.song_name_label.configure(text="Song Name:  " + music_dictionary[list_music[self.music_count]])
+
+    def update_question_prompt(self):
+        self.question_number += 1
+        self.question_number_display += 1
+        self.question_prompt()
+
+    def question_prompt(self):
+        if self.question_number == len(self.questions):
+            self.result()
+        else:
+            self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+            self.question.place(relx=0.5, rely=0.2, anchor="center")
+            choice_count = 0
+            for choice in self.choices[self.question_number]:
+                if choice_count == 0:
+                    self.answer_button_1.configure(text=choice)
+                elif choice_count == 1:
+                    self.answer_button_2.configure(text=choice)
+                elif choice_count == 2:
+                    self.answer_button_3.configure(text=choice)
+                else:
+                    self.answer_button_4.configure(text=choice)
+                choice_count += 1
+
+    def randomize_qca(self):
+        self.questions = section['question']
+        self.choices = section['choices']
+        self.answers = section['answer']
+        zip_qca = zip(self.questions, self.choices, self.answers)
+        list_qca = list(zip_qca)
+        random.shuffle(list_qca)
+        self.questions, self.choices, self.answers = zip(*list_qca)
+
+    def result(self):
+        self.answer_button_1.destroy()
+        self.answer_button_2.destroy()
+        self.answer_button_3.destroy()
+        self.answer_button_4.destroy()
+        self.question.configure(text="")
+        stop_music()
+        self.result_label = Label(root, text="Your final score was " + str(self.score) + "/" + str(len(self.questions)) + "!", width=30, bg="black", fg="white", font=("Helvetica", 32, "bold"))
+        self.result_label.place(relx=0.5, rely=0.5, anchor="center")
+        self.result_label_percent = Label(root, text="(" + str(100 * round(self.score/len(self.questions), 2)) + "%)", width=30, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.result_label_percent.place(relx=0.5, rely=0.55, anchor="center")
+        replay_button = Button(root, text="Replay", command=lambda: [self.replay(), replay_button.destroy()], width=12, bg="#e40000", fg="white", font=("Helvetica", 16, "bold"))
+        replay_button.place(relx=0.5, rely=0.65, anchor="center")
+
+    def replay(self):
+        self.randomize_qca()
+        self.score = 0
+        self.question_number = 0
+        self.music_count = 0
+        self.result_label.configure(text="")
+        self.result_label_percent.configure(text="")
+        self.start_trivia()
+        random.shuffle(list_music)
+        winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
+        self.update_song_name()
 
 
 trivia = Trivia()
