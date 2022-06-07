@@ -22,6 +22,27 @@ def stop_music():
     winsound.PlaySound(None, winsound.SND_ASYNC)
 
 
+music_dictionary = {
+    "bonneton": "Bonneton",
+    "bowserBattle1NimbusArenaShowdown": "Bowser Battle 1: Nimbus Arena Showdown",
+    "bowserCastle": "Bowser's Castle",
+    "bubblaine": "Bubblaine",
+    "forgottenIsle": "Forgotten Isle",
+    "fossilFalls": "Fossil Falls",
+    "honeyluneRidge": "Honeylune Ridge",
+    "jumpUpSuperStarFestival": "Jump Up, Super Star! NDC Festival Edition",
+    "lakeLamode": "Lake Lamode",
+    "mountVolbono": "Mount Volbono",
+    "newDonkCity": "New Donk City",
+    "peachCastle": "Peach's Castle",
+    "ruinedDragonBattle": "Ruined Dragon Battle",
+    "shiveriaTown": "Shiveria Town",
+    "steamGardens": "Steam Gardens",
+    "theSilverWorldOfShiveria": "The Silver World of Shiveria",
+    "tostarenaRuins": "Tostarena Ruins"
+}
+
+
 # Trivia Game
 with open('triviaQ&A.json') as file:
     section = json.load(file)
@@ -57,6 +78,9 @@ class Trivia:
         self.question_number = 0
         self.question_number_display = 1
         self.num_of_questions = len(questions)
+        self.score_label = Label()
+        self.song_name_label = Label(root, text="Song Name:   " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="white", font=("Helvetica", 16, "bold"), anchor="w")
+        self.song_name_label.place(relx=0, rely=0.95)
 
     def buttons(self):
         quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="darkred", fg="white", font=("Helvetica", 16, "bold"))
@@ -81,13 +105,40 @@ class Trivia:
         self.music_name = list_music[self.music_count]
         music_string = 'Music/' + self.music_name + '.wav'
         winsound.PlaySound(music_string, winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
+        self.update_song_name()
 
     def is_fullscreen(self):
         self.is_fullscreen = not self.is_fullscreen
         root.attributes('-fullscreen', self.is_fullscreen)
 
     def start_trivia(self):
-        print(2)
+        self.answer_buttons()
+        self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.score_label.place(relx=0.5, rely=0.75, anchor="center")
+
+    def answer_buttons(self):
+        answer_button_1 = Button(root, text="Q1", command=self.answer, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        answer_button_1.place(relx=0.2, rely=0.6, anchor="center")
+
+        answer_button_2 = Button(root, text="Q2", command=lambda: answer_button_2.destroy(), width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        answer_button_2.place(relx=0.4, rely=0.6, anchor="center")
+
+        answer_button_3 = Button(root, text="Q3", command=lambda: answer_button_3.destroy(), width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        answer_button_3.place(relx=0.6, rely=0.6, anchor="center")
+
+        answer_button_4 = Button(root, text="Q4", command=lambda: answer_button_4.destroy(), width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        answer_button_4.place(relx=0.8, rely=0.6, anchor="center")
+
+    def answer(self):
+        self.score += 1
+        self.update_score()
+        print(self.score)
+
+    def update_score(self):
+        self.score_label.configure(text="Score: " + str(self.score))
+
+    def update_song_name(self):
+        self.song_name_label.configure(text="Song Name:   " + music_dictionary[list_music[self.music_count]])
 
 
 trivia = Trivia()
