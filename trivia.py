@@ -6,6 +6,7 @@ import random
 from decimal import *
 
 
+
 # Music
 with open('musicNames.json') as music_file:
     music_section = json.load(music_file)
@@ -108,7 +109,7 @@ class Trivia:
         self.randomize_qca()
         self.question_prompt()
         self.question_number_display = len(self.questions)
-        self.questions_left_label = Label(root, text="Questions Left: " + str(self.question_number_display), width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.questions_left_label = Label(root, text="Questions Unanswered: " + str(self.question_number_display), width=24, bg="black", fg="white", font=("Helvetica", 16, "bold"))
         self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
 
     def answer_buttons(self):
@@ -165,7 +166,7 @@ class Trivia:
         else:
             self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"))
             self.question.place(relx=0.5, rely=0.4, anchor="center")
-            self.questions_left_label.configure(text="Questions Left: " + str(self.question_number_display))
+            self.questions_left_label.configure(text="Questions Unanswered: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
             for choice in self.choices[self.question_number]:
                 rand_answer_button = random.choice(answer_list)

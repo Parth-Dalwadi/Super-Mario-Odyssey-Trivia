@@ -13,7 +13,13 @@
     "Which wedding item did Bowser steal from the Lake Kingdom?",
     "Which of these characters is not in the game?",
     "What was the release date for this game?",
-    "Which outfit can you buy in the game?"
+    "Which outfit can you buy in the game?",
+    "What's the name of the Ruined Kingdom's boss?",
+    "How many Power Moons are needed to leave the Cascade Kingdom?",
+    "Where do you fight Bowser for the first time?",
+    "What was Mario's objective in the Lost Kingdom?",
+    "Who do you fight in the Secret Flower Field?",
+    "Which of these is not in the Cap Kingdom?"
   ],
 
   "choices" : [
@@ -30,7 +36,13 @@
     ["Binding Band", "Lochaldy Dress", "Frost-Frosted Cake", "Sparkle Water"],
     ["Toadette", "Poochy", "Captain Toad", "Kamek"],
     ["October 14, 2017", "November 11, 2017", "October 27, 2017", "November 3, 2017"],
-    ["Viking Outfit", "Pirate Outfit", "Basketball Uniform", "Donkey Kong Suit"]
+    ["Viking Outfit", "Pirate Outfit", "Basketball Uniform", "Donkey Kong Suit"],
+    ["Lord of Cinder", "Lord of Storm", "Lord of Lightning", "Lord of Frost"],
+    ["5", "8", "12", "10"],
+    ["Cloud Kingdom", "Moon Kingdom", "Dark Side", "Mushroom Kingdom"],
+    ["Save Tiara", "Defeat Rango", "Repair the Odyssey", "Retrieve his hat"],
+    ["Petey Piranha", "Torkdrift", "Spewart", "Mechawiggler"],
+    ["Moon Rock", "Paragoomba", "Crazy Cap", "Chain Chomp"]
   ],
 
   "answer" : [
@@ -47,7 +59,13 @@
     "Lochaldy Dress",
     "Kamek",
     "October 27, 2017",
-    "Pirate Outfit"
+    "Pirate Outfit",
+    "Lord of Lightning",
+    "5",
+    "Cloud Kingdom",
+    "Repair the Odyssey",
+    "Torkdrift",
+    "Chain Chomp"
   ]
 
 }
