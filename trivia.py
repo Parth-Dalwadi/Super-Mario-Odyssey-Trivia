@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import winsound
 import random
+from decimal import *
 
 
 # Music
@@ -107,7 +108,7 @@ class Trivia:
         self.randomize_qca()
         self.question_prompt()
         self.question_number_display = len(self.questions)
-        self.questions_left_label = Label(root, text="Questions left: " + str(self.question_number_display), width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.questions_left_label = Label(root, text="Questions Left: " + str(self.question_number_display), width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
         self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
 
     def answer_buttons(self):
@@ -160,11 +161,10 @@ class Trivia:
 
     def question_prompt(self):
         if self.question_number == len(self.questions):
-            self.questions_left_label.configure(text="Questions Left: 0")
             self.result()
         else:
             self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"))
-            self.question.place(relx=0.5, rely=0.2, anchor="center")
+            self.question.place(relx=0.5, rely=0.4, anchor="center")
             self.questions_left_label.configure(text="Questions Left: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
             for choice in self.choices[self.question_number]:
@@ -196,10 +196,13 @@ class Trivia:
         self.question.configure(text="")
         self.score_label.configure(text="")
         self.questions_left_label.configure(text="")
+        self.song_name_label.configure(text="")
         stop_music()
         self.result_label = Label(root, text="Your final score was " + str(self.score) + "/" + str(len(self.questions)) + "!", width=30, bg="black", fg="white", font=("Helvetica", 32, "bold"))
         self.result_label.place(relx=0.5, rely=0.5, anchor="center")
-        self.result_label_percent = Label(root, text="(" + str(100 * round(self.score/len(self.questions), 2)) + "%)", width=30, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        result_percent = str(100 * round(Decimal(self.score)/Decimal(len(self.questions)), 2))
+        result_percent_split = result_percent.split(".")
+        self.result_label_percent = Label(root, text="(" + result_percent_split[0] + "%)", width=30, bg="black", fg="white", font=("Helvetica", 16, "bold"))
         self.result_label_percent.place(relx=0.5, rely=0.55, anchor="center")
         replay_button = Button(root, text="Replay", command=lambda: [self.replay(), replay_button.destroy()], width=12, bg="#e40000", fg="white", font=("Helvetica", 16, "bold"))
         replay_button.place(relx=0.5, rely=0.65, anchor="center")

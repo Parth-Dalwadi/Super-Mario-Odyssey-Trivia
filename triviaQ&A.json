@@ -9,7 +9,11 @@
     "What are the locals of Mount Volbono called?",
     "What transformation do you use to defeat Mollusque-Lanceur?",
     "In which kingdom does the Jaxi reside?",
-    "Where can you buy the Samurai Armor?"
+    "Where can you buy the Samurai Armor?",
+    "Which wedding item did Bowser steal from the Lake Kingdom?",
+    "Which of these characters is not in the game?",
+    "What was the release date for this game?",
+    "Which outfit can you buy in the game?"
   ],
 
   "choices" : [
@@ -22,7 +26,11 @@
     ["Forks", "Volbonans", "Stir Fires", "Lunchies"],
     ["Gushen", "Sherm", "Cheep Cheep", "Lava Bubble"],
     ["Cloud Kingdom", "Snow Kingdom", "Sand Kingdom", "Lost Kingdom"],
-    ["Lake Kingdom", "Cascade Kingdom", "Ruined Kingdom", "Bowser's Kingdom"]
+    ["Lake Kingdom", "Cascade Kingdom", "Ruined Kingdom", "Bowser's Kingdom"],
+    ["Binding Band", "Lochaldy Dress", "Frost-Frosted Cake", "Sparkle Water"],
+    ["Toadette", "Poochy", "Captain Toad", "Kamek"],
+    ["October 14, 2017", "November 11, 2017", "October 27, 2017", "November 3, 2017"],
+    ["Viking Outfit", "Pirate Outfit", "Basketball Uniform", "Donkey Kong Suit"]
   ],
 
   "answer" : [
@@ -35,7 +43,11 @@
     "Volbonans",
     "Gushen",
     "Sand Kingdom",
-    "Bowser's Kingdom"
+    "Bowser's Kingdom",
+    "Lochaldy Dress",
+    "Kamek",
+    "October 27, 2017",
+    "Pirate Outfit"
   ]
 
 }
