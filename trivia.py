@@ -164,7 +164,8 @@ class Trivia:
         if self.question_number == len(self.questions):
             self.result()
         else:
-            self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"))
+            self.question.configure(text="")
+            self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"), wraplength=780)
             self.question.place(relx=0.5, rely=0.4, anchor="center")
             self.questions_left_label.configure(text="Questions Unanswered: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
