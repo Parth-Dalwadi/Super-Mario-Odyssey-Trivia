@@ -6,7 +6,6 @@ import random
 from decimal import *
 
 
-
 # Music
 with open('musicNames.json') as music_file:
     music_section = json.load(music_file)
@@ -56,7 +55,7 @@ class Trivia:
         self.music_name = ''
         self.is_fullscreen = True
         self.score = 0
-        self.question = Label()
+        self.question = Label(root, text="", width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"), wraplength=780)
         self.question_number = 0
         self.question_number_display = 0
         self.score_label = Label()
@@ -72,6 +71,9 @@ class Trivia:
         self.result_label = Label()
         self.result_label_percent = Label()
         self.questions_left_label = Label()
+        self.time_label = Label(root, text="", width=12, bg="black", fg="yellow", font=("Helvetica", 24, "bold"))
+        self.time_left = 0
+        self.after_id = None
 
     def buttons(self):
         quit_button = Button(root, text="Quit", command=root.destroy, width=12, bg="darkred", fg="white", font=("Helvetica", 16, "bold"))
@@ -88,6 +90,18 @@ class Trivia:
 
         start_button = Button(root, text="Start", command=lambda: [self.start_trivia(), start_button.destroy()], width=12, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
         start_button.place(relx=0.5, rely=0.5, anchor="center")
+
+    def countdown(self, time):
+        self.time_left = time
+        if self.time_left < 0:
+            self.time_label.configure(text="Timer: 0")
+            self.after_id = None
+            self.countdown(5)
+            self.update_question_prompt()
+        else:
+            self.time_label.configure(text="Timer: " + "%d" % self.time_left)
+            self.time_left -= 1
+            self.after_id = root.after(1000, self.countdown, self.time_left)
 
     def change_music(self):
         self.music_count += 1
@@ -107,10 +121,13 @@ class Trivia:
         self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
         self.score_label.place(relx=0.5, rely=0.75, anchor="center")
         self.randomize_qca()
+        self.question.place(relx=0.5, rely=0.3, anchor="center")
         self.question_prompt()
         self.question_number_display = len(self.questions)
         self.questions_left_label = Label(root, text="Questions Unanswered: " + str(self.question_number_display), width=24, bg="black", fg="white", font=("Helvetica", 16, "bold"))
         self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
+        self.time_label.place(relx=0.5, rely=0.45, anchor="center")
+        self.countdown(5)
 
     def answer_buttons(self):
         self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
@@ -164,9 +181,12 @@ class Trivia:
         if self.question_number == len(self.questions):
             self.result()
         else:
+            if self.after_id is not None:
+                root.after_cancel(self.after_id)
+                self.countdown(5)
+
             self.question.configure(text="")
-            self.question = Label(root, text=self.questions[self.question_number], width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"), wraplength=780)
-            self.question.place(relx=0.5, rely=0.4, anchor="center")
+            self.question.configure(text=self.questions[self.question_number])
             self.questions_left_label.configure(text="Questions Unanswered: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
             for choice in self.choices[self.question_number]:
@@ -191,6 +211,10 @@ class Trivia:
         self.questions, self.choices, self.answers = zip(*list_qca)
 
     def result(self):
+        root.after_cancel(self.after_id)
+        self.after_id = None
+        self.time_left = 0
+        self.time_label.configure(text="")
         self.answer_button_1.destroy()
         self.answer_button_2.destroy()
         self.answer_button_3.destroy()
