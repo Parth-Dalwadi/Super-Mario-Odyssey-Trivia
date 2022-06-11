@@ -55,11 +55,11 @@ class Trivia:
         self.music_name = ''
         self.is_fullscreen = True
         self.score = 0
-        self.question = Label(root, text="", width=80, bg="black", fg="yellow", font=("Helvetica", 32, "bold"), wraplength=780)
+        self.question = Label(root, text="", width=80, bg="black", fg="lightblue", font=("Helvetica", 32, "bold"), wraplength=780)
         self.question_number = 0
         self.question_number_display = 0
         self.score_label = Label()
-        self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="lightblue", font=("Helvetica", 16, "bold"), anchor="w")
+        self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="gray", font=("Helvetica", 16, "bold"), anchor="w")
         self.song_name_label.place(relx=0, rely=0.95)
         self.answer_button_1 = Button()
         self.answer_button_2 = Button()
@@ -96,7 +96,7 @@ class Trivia:
         if self.time_left < 0:
             self.time_label.configure(text="Timer: 0")
             self.after_id = None
-            self.countdown(5)
+            self.countdown(10)
             self.update_question_prompt()
         else:
             self.time_label.configure(text="Timer: " + "%d" % self.time_left)
@@ -127,7 +127,7 @@ class Trivia:
         self.questions_left_label = Label(root, text="Questions Unanswered: " + str(self.question_number_display), width=24, bg="black", fg="pink", font=("Helvetica", 16, "bold"))
         self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
         self.time_label.place(relx=0.5, rely=0.45, anchor="center")
-        self.countdown(5)
+        self.countdown(10)
 
     def answer_buttons(self):
         self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
@@ -183,7 +183,7 @@ class Trivia:
         else:
             if self.after_id is not None:
                 root.after_cancel(self.after_id)
-                self.countdown(5)
+                self.countdown(10)
 
             self.question.configure(text="")
             self.question.configure(text=self.questions[self.question_number])
