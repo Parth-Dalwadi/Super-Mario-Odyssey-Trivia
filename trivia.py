@@ -55,11 +55,11 @@ class Trivia:
         self.music_name = ''
         self.is_fullscreen = True
         self.score = 0
-        self.question = Label(root, text="", width=80, bg="black", fg="white", font=("Helvetica", 32, "bold"), wraplength=780)
+        self.question = Label(root, text="", width=80, bg="black", fg="yellow", font=("Helvetica", 32, "bold"), wraplength=780)
         self.question_number = 0
         self.question_number_display = 0
         self.score_label = Label()
-        self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="white", font=("Helvetica", 16, "bold"), anchor="w")
+        self.song_name_label = Label(root, text="Song Name:  " + music_dictionary[list_music[self.music_count]], width=60, bg="black", fg="lightblue", font=("Helvetica", 16, "bold"), anchor="w")
         self.song_name_label.place(relx=0, rely=0.95)
         self.answer_button_1 = Button()
         self.answer_button_2 = Button()
@@ -71,7 +71,7 @@ class Trivia:
         self.result_label = Label()
         self.result_label_percent = Label()
         self.questions_left_label = Label()
-        self.time_label = Label(root, text="", width=12, bg="black", fg="yellow", font=("Helvetica", 24, "bold"))
+        self.time_label = Label(root, text="", width=12, bg="black", fg="red", font=("Helvetica", 24, "bold"))
         self.time_left = 0
         self.after_id = None
 
@@ -85,7 +85,7 @@ class Trivia:
         change_music_button = Button(root, text="Change Music", command=self.change_music, width=12, bg="purple", fg="white", font=("Helvetica", 16, "bold"))
         change_music_button.pack(side="bottom", anchor="se")
 
-        toggle_window_button = Button(root, text="Toggle Window", command=self.is_fullscreen, width=12, bg="brown", fg="white", font=("Helvetica", 16, "bold"))
+        toggle_window_button = Button(root, text="Toggle Window", command=self.is_fullscreen_command, width=12, bg="brown", fg="white", font=("Helvetica", 16, "bold"))
         toggle_window_button.pack(side="bottom", anchor="se")
 
         start_button = Button(root, text="Start", command=lambda: [self.start_trivia(), start_button.destroy()], width=12, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
@@ -112,34 +112,34 @@ class Trivia:
         winsound.PlaySound(music_string, winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
         self.update_song_name()
 
-    def is_fullscreen(self):
+    def is_fullscreen_command(self):
         self.is_fullscreen = not self.is_fullscreen
         root.attributes('-fullscreen', self.is_fullscreen)
 
     def start_trivia(self):
         self.answer_buttons()
-        self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="lightgreen", font=("Helvetica", 16, "bold"))
         self.score_label.place(relx=0.5, rely=0.75, anchor="center")
         self.randomize_qca()
         self.question.place(relx=0.5, rely=0.3, anchor="center")
         self.question_prompt()
         self.question_number_display = len(self.questions)
-        self.questions_left_label = Label(root, text="Questions Unanswered: " + str(self.question_number_display), width=24, bg="black", fg="white", font=("Helvetica", 16, "bold"))
+        self.questions_left_label = Label(root, text="Questions Unanswered: " + str(self.question_number_display), width=24, bg="black", fg="pink", font=("Helvetica", 16, "bold"))
         self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
         self.time_label.place(relx=0.5, rely=0.45, anchor="center")
         self.countdown(5)
 
     def answer_buttons(self):
-        self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_1.place(relx=0.2, rely=0.6, anchor="center")
 
-        self.answer_button_2 = Button(root, text="Q2", command=self.answer_2, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_2 = Button(root, text="Q2", command=self.answer_2, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_2.place(relx=0.4, rely=0.6, anchor="center")
 
-        self.answer_button_3 = Button(root, text="Q3", command=self.answer_3, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_3 = Button(root, text="Q3", command=self.answer_3, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_3.place(relx=0.6, rely=0.6, anchor="center")
 
-        self.answer_button_4 = Button(root, text="Q4", command=self.answer_4, width=20, bg="#e4000f", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_4 = Button(root, text="Q4", command=self.answer_4, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_4.place(relx=0.8, rely=0.6, anchor="center")
 
     def answer_1(self):
