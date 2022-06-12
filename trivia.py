@@ -184,7 +184,6 @@ class Trivia:
                 root.after_cancel(self.after_id)
                 self.countdown(10)
 
-            self.question.configure(text="")
             self.question.configure(text=self.questions[self.question_number])
             self.questions_left_label.configure(text="Questions Unanswered: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
