@@ -21,10 +21,10 @@ for music in list_music:
     music_dictionary.update({music: list_full_music_names[dictionary_count]})
     dictionary_count += 1
 
-random.shuffle(list_music)
 
-
-winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
+def randomize_music():
+    random.shuffle(list_music)
+    winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
 
 
 def stop_music():
@@ -49,6 +49,7 @@ title.pack(side="top")
 
 class Trivia:
     def __init__(self):
+        randomize_music()
         self.buttons()
         self.music_count = 0
         self.music_name = ''
@@ -237,8 +238,7 @@ class Trivia:
         self.result_label.destroy()
         self.result_label_percent.destroy()
         self.start_trivia()
-        random.shuffle(list_music)
-        winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
+        randomize_music()
         self.update_song_name()
 
 
