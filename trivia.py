@@ -1,6 +1,5 @@
 import json
 from tkinter import *
-from tkinter import ttk
 import winsound
 import random
 from decimal import *
@@ -130,41 +129,41 @@ class Trivia:
         self.countdown(10)
 
     def answer_buttons(self):
-        self.answer_button_1 = Button(root, text="Q1", command=self.answer_1, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_1 = Button(root, command=self.answer_1, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_1.place(relx=0.2, rely=0.6, anchor="center")
 
-        self.answer_button_2 = Button(root, text="Q2", command=self.answer_2, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_2 = Button(root, command=self.answer_2, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_2.place(relx=0.4, rely=0.6, anchor="center")
 
-        self.answer_button_3 = Button(root, text="Q3", command=self.answer_3, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_3 = Button(root, command=self.answer_3, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_3.place(relx=0.6, rely=0.6, anchor="center")
 
-        self.answer_button_4 = Button(root, text="Q4", command=self.answer_4, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
+        self.answer_button_4 = Button(root, command=self.answer_4, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
         self.answer_button_4.place(relx=0.8, rely=0.6, anchor="center")
 
     def answer_1(self):
         if self.answer_button_1['text'] == self.answers[self.question_number]:
-            self.score += 1
-            self.update_score()
+            self.answer_is_correct()
         self.update_question_prompt()
 
     def answer_2(self):
         if self.answer_button_2['text'] == self.answers[self.question_number]:
-            self.score += 1
-            self.update_score()
+            self.answer_is_correct()
         self.update_question_prompt()
 
     def answer_3(self):
         if self.answer_button_3['text'] == self.answers[self.question_number]:
-            self.score += 1
-            self.update_score()
+            self.answer_is_correct()
         self.update_question_prompt()
 
     def answer_4(self):
         if self.answer_button_4['text'] == self.answers[self.question_number]:
-            self.score += 1
-            self.update_score()
+            self.answer_is_correct()
         self.update_question_prompt()
+
+    def answer_is_correct(self):
+        self.score += 1
+        self.update_score()
 
     def update_score(self):
         self.score_label.configure(text="Score: " + str(self.score))
