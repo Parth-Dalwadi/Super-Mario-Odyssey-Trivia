@@ -234,8 +234,8 @@ class Trivia:
         self.score = 0
         self.question_number = 0
         self.music_count = 0
-        self.result_label.configure(text="")
-        self.result_label_percent.configure(text="")
+        self.result_label.destroy()
+        self.result_label_percent.destroy()
         self.start_trivia()
         random.shuffle(list_music)
         winsound.PlaySound('Music/' + list_music[0] + '.wav', winsound.SND_FILENAME | winsound.SND_LOOP | winsound.SND_ASYNC)
