@@ -144,29 +144,26 @@ class Trivia:
 
     def answer_1(self):
         if self.answer_button_1['text'] == self.answers[self.question_number]:
-            self.answer_is_correct()
+            self.update_score()
         self.update_question_prompt()
 
     def answer_2(self):
         if self.answer_button_2['text'] == self.answers[self.question_number]:
-            self.answer_is_correct()
+            self.update_score()
         self.update_question_prompt()
 
     def answer_3(self):
         if self.answer_button_3['text'] == self.answers[self.question_number]:
-            self.answer_is_correct()
+            self.update_score()
         self.update_question_prompt()
 
     def answer_4(self):
         if self.answer_button_4['text'] == self.answers[self.question_number]:
-            self.answer_is_correct()
+            self.update_score()
         self.update_question_prompt()
 
-    def answer_is_correct(self):
-        self.score += 1
-        self.update_score()
-
     def update_score(self):
+        self.score += 1
         self.score_label.configure(text="Score: " + str(self.score))
 
     def update_song_name(self):
