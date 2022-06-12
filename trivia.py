@@ -60,7 +60,7 @@ class Trivia:
         self.score_label = Label()
         self.song_name_label = Label(root, width=60, bg="black", fg="gray", font=("Helvetica", 16, "bold"), anchor="w")
         self.update_song_name()
-        self.song_name_label.place(relx=0, rely=0.95)
+        self.song_name_label.place(relx=0, rely=0.95, relwidth=0.5)
         self.answer_button_1 = Button()
         self.answer_button_2 = Button()
         self.answer_button_3 = Button()
@@ -119,28 +119,28 @@ class Trivia:
     def start_trivia(self):
         self.answer_buttons()
         self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="lightgreen", font=("Helvetica", 16, "bold"))
-        self.score_label.place(relx=0.5, rely=0.75, anchor="center")
+        self.score_label.place(relx=0.5, rely=0.75, anchor="center", relwidth=0.4)
         self.randomize_qca()
-        self.question.place(relx=0.5, rely=0.3, anchor="center")
+        self.question.place(relx=0.5, rely=0.3, anchor="center", relwidth=1)
         self.question_prompt()
         self.question_number_display = len(self.questions)
         self.questions_left_label = Label(root, text="Questions Unanswered: " + str(self.question_number_display), width=24, bg="black", fg="pink", font=("Helvetica", 16, "bold"))
-        self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center")
-        self.time_label.place(relx=0.5, rely=0.45, anchor="center")
+        self.questions_left_label.place(relx=0.5, rely=0.8, anchor="center", relwidth=0.4)
+        self.time_label.place(relx=0.5, rely=0.45, anchor="center", relwidth=1)
         self.countdown(10)
 
     def answer_buttons(self):
         self.answer_button_1 = Button(root, command=self.answer_1, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
-        self.answer_button_1.place(relx=0.2, rely=0.6, anchor="center")
+        self.answer_button_1.place(relx=0.2, rely=0.6, anchor="center", relwidth=0.18)
 
         self.answer_button_2 = Button(root, command=self.answer_2, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
-        self.answer_button_2.place(relx=0.4, rely=0.6, anchor="center")
+        self.answer_button_2.place(relx=0.4, rely=0.6, anchor="center", relwidth=0.18)
 
         self.answer_button_3 = Button(root, command=self.answer_3, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
-        self.answer_button_3.place(relx=0.6, rely=0.6, anchor="center")
+        self.answer_button_3.place(relx=0.6, rely=0.6, anchor="center", relwidth=0.18)
 
         self.answer_button_4 = Button(root, command=self.answer_4, width=20, bg="#101010", fg="white", font=("Helvetica", 16, "bold"))
-        self.answer_button_4.place(relx=0.8, rely=0.6, anchor="center")
+        self.answer_button_4.place(relx=0.8, rely=0.6, anchor="center", relwidth=0.18)
 
     def answer_1(self):
         if self.answer_button_1['text'] == self.answers[self.question_number]:
