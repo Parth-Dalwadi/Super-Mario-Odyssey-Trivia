@@ -54,7 +54,7 @@ class Trivia:
         self.music_name = ''
         self.is_fullscreen = True
         self.score = 0
-        self.question_label = Label(root, text="", width=80, bg="black", fg="lightblue", font=("Helvetica", 32, "bold"), wraplength=780)
+        self.question_label = Label(root, width=80, bg="black", fg="lightblue", font=("Helvetica", 32, "bold"), wraplength=780)
         self.question_number = 0
         self.question_number_display = 0
         self.score_label = Label()
