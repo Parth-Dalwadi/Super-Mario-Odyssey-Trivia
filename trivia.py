@@ -54,7 +54,7 @@ class Trivia:
         self.music_name = ''
         self.is_fullscreen = True
         self.score = 0
-        self.question = Label(root, text="", width=80, bg="black", fg="lightblue", font=("Helvetica", 32, "bold"), wraplength=780)
+        self.question_label = Label(root, text="", width=80, bg="black", fg="lightblue", font=("Helvetica", 32, "bold"), wraplength=780)
         self.question_number = 0
         self.question_number_display = 0
         self.score_label = Label()
@@ -121,7 +121,7 @@ class Trivia:
         self.score_label = Label(root, text="Score: 0", width=20, bg="black", fg="lightgreen", font=("Helvetica", 16, "bold"))
         self.score_label.place(relx=0.5, rely=0.75, anchor="center", relwidth=0.4)
         self.randomize_qca()
-        self.question.place(relx=0.5, rely=0.3, anchor="center", relwidth=1)
+        self.question_label.place(relx=0.5, rely=0.3, anchor="center", relwidth=1)
         self.questions_left_label = Label(root, width=24, bg="black", fg="pink", font=("Helvetica", 16, "bold"))
         self.question_number_display = len(self.questions)
         self.question_prompt()
@@ -182,7 +182,7 @@ class Trivia:
                 root.after_cancel(self.after_id)
                 self.countdown(10)
 
-            self.question.configure(text=self.questions[self.question_number])
+            self.question_label.configure(text=self.questions[self.question_number])
             self.questions_left_label.configure(text="Questions Unanswered: " + str(self.question_number_display))
             answer_list = [1, 2, 3, 4]
             for choice in self.choices[self.question_number]:
@@ -215,7 +215,7 @@ class Trivia:
         self.answer_button_2.destroy()
         self.answer_button_3.destroy()
         self.answer_button_4.destroy()
-        self.question.configure(text="")
+        self.question_label.configure(text="")
         self.score_label.configure(text="")
         self.questions_left_label.configure(text="")
         self.song_name_label.configure(text="")
